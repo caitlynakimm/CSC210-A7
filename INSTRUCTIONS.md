@@ -39,7 +39,7 @@ You don't want to create opportunities for a user to make accidental changes to 
 ### Implementing the Methods
 The two operations your class should provide are listed in the interface `SpellingOperations`. Some more information about them:
 
-* You should provide a method `containsWord` to check  the dictionary to see whether a word is valid (e.g., is spelled correctly). It should take a string (representing a word) and return `true` or `false` depending on whether the word is found in the dictionary.
+* You should provide a method `containsWord` to check the dictionary to see whether a word is valid (e.g., is spelled correctly). It should take a string (representing a word) and return `true` or `false` depending on whether the word is found in the dictionary.
 
 * You should also provide a `nearMisses` method that suggests similar words. This method will be used to suggest alternative options when `containsWord` determines a word is misspelled. It should identify words in the dictionary that are exactly one edit away. To do this, construct all possible strings that are one edit away and check each against the dictionary. You will then want to return any that are real words. Make sure the list you return doesn't contain any duplicates.
 
