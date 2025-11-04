@@ -5,11 +5,14 @@ Your readme should include the following information. **Each student needs to su
 ## General Information
 
 Programming Partner Name (if you'd like to be graded together):
-
+- N/A
 Other Collaborators (and kudos to helpful members of the class):
+- 
 
 Any references used besides JavaDoc and course materials:
+- https://www.geeksforgeeks.org/java/swapping-characters-string-java/
 
 ## Assignment Reflection
 
 Please reflect on your experience with this assignment. What was most challenging? What was most interesting?
+-  Decided not to handle capitalization (made all letters in words lowercase)
