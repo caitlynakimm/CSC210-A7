@@ -1,11 +1,8 @@
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Scanner;
-//import java.util.regex.Pattern;
 import java.io.File;
 import java.io.FileNotFoundException;
-
-//import a5.SpellingOperations;
 
 public class WordValidation implements SpellingOperations {
     private HashSet<String> dictionary;
@@ -97,7 +94,7 @@ public class WordValidation implements SpellingOperations {
                 //converts alphabetic characters in the word to lowercase
                 String word = fileScanner.nextLine().trim().toLowerCase();
                 //remove any characters that aren't lowercase letters in the word
-                word = word.replaceAll("[^a-z]", "");
+                word = word.replaceAll("[^a-z']", "");
                 if (!word.isEmpty()) {
                     dictionary.add(word);
                 }
@@ -110,21 +107,84 @@ public class WordValidation implements SpellingOperations {
     }
 
     public static void main(String[] args) {
-        //tests for each near miss case goes here
-        //also check if need commented out import
+        //add each word from "words.txt" file into dictionary
         WordValidation dictionary = new WordValidation("words.txt");
         
-        System.out.println(dictionary.containsWord("cattle"));
+        //checking if dictionary contains valid word
+        //System.out.println(dictionary.containsWord("cattle"));
         
-        //test cases for each of the 5 near misses types plus one valid word
-        String[] testWords = {"catttle", "catle", "caxtle", "cattel", "cattell", "cattle"};
+        System.out.println();
+        System.out.println("///////////////TEST FOR DELETION//////////////");
+        System.out.println();
+
+        //test cases for near miss type deletion plus misspelled words with apostrophes
+        String[] testWordsOne = {"catttle", "potatoo", "coookie", "Jaimie", "IIreland"};
         
-        for (String word : testWords) {
+        for (String word : testWordsOne) {
             System.out.println("Does dictionary contain " + word + "?: " + dictionary.containsWord(word));
-            ArrayList<String> nearMissWords = dictionary.nearMisses(word);
-            System.out.println("Near misses for " + word + " are: " + nearMissWords);
+            ArrayList<String> nearMissWordsOne = dictionary.nearMisses(word);
+            System.out.println("Near misses for " + word + " are: " + nearMissWordsOne);
             System.out.println();
         }
+
+        System.out.println("///////////////TEST FOR INSERTION//////////////");
+        System.out.println();
+
+        //test cases for near miss type insertion
+        String[] testWordsTwo = {"catle", "potao", "ookie", "Jame", "Irelan"};
+        
+        for (String word : testWordsTwo) {
+            System.out.println("Does dictionary contain " + word + "?: " + dictionary.containsWord(word));
+            ArrayList<String> nearMissWordsTwo = dictionary.nearMisses(word);
+            System.out.println("Near misses for " + word + " are: " + nearMissWordsTwo);
+            System.out.println();
+        }
+        
+        System.out.println("///////////////TEST FOR SUBSTITUTION//////////////");
+        System.out.println();
+
+        //test cases for near miss type substitution
+        String[] testWordsThree = {"caxtle", "cattle'x", "cattle''", "cabdy", "dof"};
+        
+        for (String word : testWordsThree) {
+            System.out.println("Does dictionary contain " + word + "?: " + dictionary.containsWord(word));
+            ArrayList<String> nearMissWordsThree = dictionary.nearMisses(word);
+            System.out.println("Near misses for " + word + " are: " + nearMissWordsThree);
+            System.out.println();
+        }
+
+        System.out.println("///////////////TEST FOR TRANSPOSITION//////////////");
+        System.out.println();
+
+        //test cases for near miss type transposition
+        String[] testWordsFour = {"cattel", "cattles'", "bugrer", "aMry", "plnat"};
+        
+        for (String word : testWordsFour) {
+            System.out.println("Does dictionary contain " + word + "?: " + dictionary.containsWord(word));
+            ArrayList<String> nearMissWordsFour = dictionary.nearMisses(word);
+            System.out.println("Near misses for " + word + " are: " + nearMissWordsFour);
+            System.out.println();
+        }
+
+        System.out.println("///////////////TEST FOR SPLIT//////////////");
+        System.out.println();
+
+        //test cases for near miss type split
+        String[] testWordsFive = {"cattell", "iam", "peanutand", "darkchocolate", "init", "badminton"};
+        
+        for (String word : testWordsFive) {
+            System.out.println("Does dictionary contain " + word + "?: " + dictionary.containsWord(word));
+            ArrayList<String> nearMissWordsFive = dictionary.nearMisses(word);
+            System.out.println("Near misses for " + word + " are: " + nearMissWordsFive);
+            System.out.println();
+        }
+
+        //trying to debug program to figure out how to not to let "le", "catt", and "ell" be considered valid words
+        // System.out.println("Does dictionary contain 'cat'?: " + dictionary.containsWord("cat"));
+        // System.out.println("Does dictionary contain 'le'?: " + dictionary.containsWord("le"));
+        // System.out.println("Does dictionary contain 'catt'?: " + dictionary.containsWord("catt"));
+        // System.out.println("Does dictionary contain 'ell'?: " + dictionary.containsWord("ell"));
+
 
     }
 }
