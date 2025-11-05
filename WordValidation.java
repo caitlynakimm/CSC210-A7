@@ -1,11 +1,11 @@
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Scanner;
-import java.util.regex.Pattern;
+//import java.util.regex.Pattern;
 import java.io.File;
 import java.io.FileNotFoundException;
 
-import a5.SpellingOperations;
+//import a5.SpellingOperations;
 
 public class WordValidation implements SpellingOperations {
     private HashSet<String> dictionary;
@@ -73,10 +73,10 @@ public class WordValidation implements SpellingOperations {
 
             //for splits
             for (int i = 1; i < queryLowerCase.length(); i++) { //can start at index 1 since substring(0,0) + " " would result in a space before the word which wouldn't result in a valid word 
-                String possibleWord = queryLowerCase.substring(0, i) + " " + queryLowerCase.substring(i);
-                
-                if (containsWord(possibleWord)) {
-                    similarWords.add(possibleWord);
+                String firstWord = queryLowerCase.substring(0, i);
+                String secondWord = queryLowerCase.substring(i);
+                if (containsWord(firstWord) && containsWord(secondWord)) { //check each word is in dictionary
+                    similarWords.add(firstWord + " " + secondWord); //add new string with both words and space inbetween them to similarWords
                 }
             }
 
@@ -94,8 +94,10 @@ public class WordValidation implements SpellingOperations {
         try {
             Scanner fileScanner = new Scanner(new File(filename));
             while (fileScanner.hasNextLine()) {
-                //only keep alphanumeric words and convert them to lowercase
-                String word = fileScanner.next().replaceAll("^[a-zA-Z0-9]+$", "").toLowerCase();
+                //converts alphabetic characters in the word to lowercase
+                String word = fileScanner.nextLine().trim().toLowerCase();
+                //remove any characters that aren't lowercase letters in the word
+                word = word.replaceAll("[^a-z]", "");
                 if (!word.isEmpty()) {
                     dictionary.add(word);
                 }
@@ -110,7 +112,19 @@ public class WordValidation implements SpellingOperations {
     public static void main(String[] args) {
         //tests for each near miss case goes here
         //also check if need commented out import
-        String testing[] = {"catttle", "catle", "caxtle", "cattel", "cattell"};
-        ArrayList<String> closeWords = nearMisses(testing);
+        WordValidation dictionary = new WordValidation("words.txt");
+        
+        System.out.println(dictionary.containsWord("cattle"));
+        
+        //test cases for each of the 5 near misses types plus one valid word
+        String[] testWords = {"catttle", "catle", "caxtle", "cattel", "cattell", "cattle"};
+        
+        for (String word : testWords) {
+            System.out.println("Does dictionary contain " + word + "?: " + dictionary.containsWord(word));
+            ArrayList<String> nearMissWords = dictionary.nearMisses(word);
+            System.out.println("Near misses for " + word + " are: " + nearMissWords);
+            System.out.println();
+        }
+
     }
 }
