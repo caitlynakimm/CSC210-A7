@@ -11,13 +11,13 @@ in your work, please indicate the status of each item
 
 Assignment Points:
 
-_____ 1 pt: Loads and stores dictionary
+__YES___ 1 pt: Loads and stores dictionary
 
-_____ 1 pt: Implements containsWord method as specified
+__YES___ 1 pt: Implements containsWord method as specified
 
-_____ 5 pts: Implements nearMisses method as specified, composed of:
+__PART___ 5 pts: Implements nearMisses method as specified, composed of:
 
-      _____ 1 pt: Suggests correct deletions
+      __YES___ 1 pt: Suggests correct deletions
 
       _____ 1 pt: Suggests correct insertions
 
@@ -25,13 +25,13 @@ _____ 5 pts: Implements nearMisses method as specified, composed of:
 
       _____ 1 pt: Suggests correct transpositions
 
-      _____ 1 pt: Suggests correct split words
+      __PART___ 1 pt: Suggests correct split words
 
-_____ 1 pt: Main includes multiple tests for each point listed above
+__YES___ 1 pt: Main includes multiple tests for each point listed above
 
-_____ 1 pt: SpellChecker runs in command line mode as described
+__YES___ 1 pt: SpellChecker runs in command line mode as described
 
-_____ 1 pt: SpellChecker runs in file checking mode as described
+__YES___ 1 pt: SpellChecker runs in file checking mode as described
 
 (Note that in addition to the tests that you write, we will perform automated testing of our own on your submitted code.)
 
@@ -39,9 +39,9 @@ _____ 1 pt: SpellChecker runs in file checking mode as described
 
 ## General Items:
 
-_____ 4 pts: Programs compile without errors or warnings
+__YES___ 4 pts: Programs compile without errors or warnings
 
-_____ 2 pts: Executes fully & consistently without crashing (exception/freeze)
+__YES___ 2 pts: Executes fully & consistently without crashing (exception/freeze)
 
 _____ 2 pt: Complies with style guidelines (missing items 1 pt each):
 

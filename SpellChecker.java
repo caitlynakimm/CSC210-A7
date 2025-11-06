@@ -2,6 +2,9 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Scanner;
 
+/**
+ * 
+ */
 public class SpellChecker{
 
     public static void argsMode(String[] args, WordValidation dictionary){
@@ -21,24 +24,24 @@ public class SpellChecker{
         HashSet<String> misspelledWords = new HashSet<>();
 
         while (fileScanner.hasNextLine()) {
-            String word = fileScanner.nextLine().trim().toLowerCase();
-            word = word.replaceAll("[^a-z']", "");
-            
-            // if (word.isEmpty()) {
-            //     continue;
-            // }
+            String line = fileScanner.nextLine();
 
-            if (!dictionary.containsWord(word) && !misspelledWords.contains(word)) {
-                System.out.println(word + " wasn't found.");
-                ArrayList<String> nearMissWords = dictionary.nearMisses(word);
-                System.out.println("    Suggestions: " + nearMissWords);
-                System.out.println();
+            String[] words = line.split("\\s+");
 
-                misspelledWords.add(word); //save new misspelled word
+            for (String word : words) {
+                String cleanedWord = word.replaceAll("^[^a-zA-Z']+|[^a-zA-Z']+$", "").toLowerCase();
+                if (!dictionary.containsWord(cleanedWord) && !misspelledWords.contains(cleanedWord)) {
+                    System.out.println("'" + cleanedWord + "' wasn't found.");
+                    ArrayList<String> nearMissWords = dictionary.nearMisses(cleanedWord);
+                    System.out.println("    Suggestions: " + nearMissWords);
+                    System.out.println();
+
+                    misspelledWords.add(cleanedWord); //save new misspelled word
+                }
             }
+            
         }
         fileScanner.close();
-
     }
 
     public static void main(String[] args) {
