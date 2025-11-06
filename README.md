@@ -6,11 +6,13 @@ Your readme should include the following information. **Each student needs to su
 
 Programming Partner Name (if you'd like to be graded together):
 - N/A
+
 Other Collaborators (and kudos to helpful members of the class):
-- 
+- N/A
 
 Any references used besides JavaDoc and course materials:
 - https://www.geeksforgeeks.org/java/swapping-characters-string-java/
+- https://www.geeksforgeeks.org/java/command-line-arguments-in-java/
 
 ## Assignment Reflection
 
