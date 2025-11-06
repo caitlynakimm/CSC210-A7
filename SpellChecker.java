@@ -1,30 +1,54 @@
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Scanner;
 
 public class SpellChecker{
 
-    public static void argWords(String[] args){
-        WordValidation dictionary = new WordValidation("words.txt"); 
-
-        if (args.length > 0) { //if command-line arguments are present
-            for (String word : args) { //processing each argument in args as a word to check
-                if (!dictionary.containsWord(word)) {
-                    ArrayList<String> nearMissWords = dictionary.nearMisses(word);
-                    System.out.println("Not found: " + word);
-                    System.out.println("  Suggestions: " + nearMissWords);
-                } else {
-                    System.out.println("'" + word + "' is spelled correctly.");
-                }            
-            }
-        }  else {
-
+    public static void argsMode(String[] args, WordValidation dictionary){
+        for (String word : args) { //processing each argument in args as a word to check
+            if (!dictionary.containsWord(word)) {
+                ArrayList<String> nearMissWords = dictionary.nearMisses(word);
+                System.out.println("Not found: " + word);
+                System.out.println("  Suggestions: " + nearMissWords);
+            } else {
+                System.out.println("'" + word + "' is spelled correctly.");
+            }         
         }
     }
 
-    public static void fileWords(String filename){
-        
+    public static void fileMode(WordValidation dictionary){
+        Scanner fileScanner = new Scanner(System.in);
+        HashSet<String> misspelledWords = new HashSet<>();
+
+        while (fileScanner.hasNextLine()) {
+            String word = fileScanner.nextLine().trim().toLowerCase();
+            word = word.replaceAll("[^a-z']", "");
+            
+            // if (word.isEmpty()) {
+            //     continue;
+            // }
+
+            if (!dictionary.containsWord(word) && !misspelledWords.contains(word)) {
+                System.out.println(word + " wasn't found.");
+                ArrayList<String> nearMissWords = dictionary.nearMisses(word);
+                System.out.println("    Suggestions: " + nearMissWords);
+                System.out.println();
+
+                misspelledWords.add(word); //save new misspelled word
+            }
+        }
+        fileScanner.close();
+
     }
 
     public static void main(String[] args) {
-        
+        WordValidation dictionary = new WordValidation("words.txt"); 
+
+        if (args.length > 0) { //if command-line arguments are present
+            argsMode(args, dictionary); //command-line argument mode
+        } else {
+            fileMode(dictionary); //file input mode
+        }
+
     }
 }

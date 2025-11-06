@@ -95,6 +95,7 @@ public class WordValidation implements SpellingOperations {
                 String word = fileScanner.nextLine().trim().toLowerCase();
                 //remove any characters that aren't lowercase letters in the word
                 word = word.replaceAll("[^a-z']", "");
+                
                 if (!word.isEmpty()) {
                     dictionary.add(word);
                 }
@@ -110,6 +111,9 @@ public class WordValidation implements SpellingOperations {
         //add each word from "words.txt" file into dictionary
         WordValidation dictionary = new WordValidation("words.txt");
         
+        //testing exception in constructor
+        //WordValidation noDict = new WordValidation("hi.txt");
+
         //checking if dictionary contains valid word
         //System.out.println(dictionary.containsWord("cattle"));
         
