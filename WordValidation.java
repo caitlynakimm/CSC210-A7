@@ -5,27 +5,32 @@ import java.io.File;
 import java.io.FileNotFoundException;
 
 /**
- * 
+ * Class implements spelling operations to validate words and suggest corrections
  */
 public class WordValidation implements SpellingOperations {
+    /** Dictionary contains valid words for spelling validation*/
     private HashSet<String> dictionary;
+
     /**
-     *  @param query the word to check
-     *  @return true if the query word is in the dictionary.
+     * @param query the word to check
+     * @return true if the query word is in the dictionary.
      */
     public boolean containsWord(String query) {
         return dictionary.contains(query.toLowerCase());
     }
 
     /**
-     *  @param query the word to check
-     *  @return a list of all valid words that are one edit away from the query
+     * Finds all valid words that are one edit away from query
+     * Includes near miss types: deletions, insertions, subtitutions, transpositions, and splits
+     * @param query the word to check
+     * @return a list of all valid words that are one edit away from the query
      */
     public ArrayList<String> nearMisses(String query) {
         HashSet<String> similarWords = new HashSet<>();
         String queryLowerCase = query.toLowerCase();
 
         if (!containsWord(query)){
+            
             //for deletions
             for (int i = 0; i < queryLowerCase.length(); i++) {
                 String possibleWord = queryLowerCase.substring(0, i) + queryLowerCase.substring(i + 1);
@@ -75,6 +80,7 @@ public class WordValidation implements SpellingOperations {
             for (int i = 1; i < queryLowerCase.length(); i++) { //can start at index 1 since substring(0,0) + " " would result in a space before the word which wouldn't result in a valid word 
                 String firstWord = queryLowerCase.substring(0, i);
                 String secondWord = queryLowerCase.substring(i);
+
                 if (containsWord(firstWord) && containsWord(secondWord)) { //check each word is in dictionary
                     similarWords.add(firstWord + " " + secondWord); //add new string with both words and space inbetween them to similarWords
                 }
@@ -86,7 +92,9 @@ public class WordValidation implements SpellingOperations {
 
     /**
      * Constructor reads words from file into HashSet
-     * @param filename
+     * Words are converted to lowercase and non-alphabetic characters (except apostrophes) are removed
+     * @param filename path to the dictionary file containing words
+     * @throws FileNotFoundException if specified file isn't found
      */
     public WordValidation(String filename) {
         dictionary = new HashSet<String>();
@@ -110,6 +118,10 @@ public class WordValidation implements SpellingOperations {
         }
     }
 
+    /**
+     * Main method for testing WordValidation class functionality
+     * @param args command line arguments (not used)
+     */
     public static void main(String[] args) {
         //add each word from "words.txt" file into dictionary
         WordValidation dictionary = new WordValidation("words.txt");
@@ -191,7 +203,6 @@ public class WordValidation implements SpellingOperations {
         // System.out.println("Does dictionary contain 'le'?: " + dictionary.containsWord("le"));
         // System.out.println("Does dictionary contain 'catt'?: " + dictionary.containsWord("catt"));
         // System.out.println("Does dictionary contain 'ell'?: " + dictionary.containsWord("ell"));
-
 
     }
 }

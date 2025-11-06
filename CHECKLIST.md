@@ -19,11 +19,11 @@ __PART___ 5 pts: Implements nearMisses method as specified, composed of:
 
       __YES___ 1 pt: Suggests correct deletions
 
-      _____ 1 pt: Suggests correct insertions
+      __YES___ 1 pt: Suggests correct insertions
 
-      _____ 1 pt: Suggests correct substitutions
+      __YES___ 1 pt: Suggests correct substitutions
 
-      _____ 1 pt: Suggests correct transpositions
+      __YES___ 1 pt: Suggests correct transpositions
 
       __PART___ 1 pt: Suggests correct split words
 
@@ -43,18 +43,18 @@ __YES___ 4 pts: Programs compile without errors or warnings
 
 __YES___ 2 pts: Executes fully & consistently without crashing (exception/freeze)
 
-_____ 2 pt: Complies with style guidelines (missing items 1 pt each):
+__YES___ 2 pt: Complies with style guidelines (missing items 1 pt each):
 
-      _____ Classes & class members all have Javadoc header comments
+      __YES___ Classes & class members all have Javadoc header comments
 
-      _____ Clear and consistent indentation of bracketed sections
+      __YES___ Clear and consistent indentation of bracketed sections
 
-      _____ Adheres to Java conventions on naming & capitalization
+      __YES___ Adheres to Java conventions on naming & capitalization
 
-      _____ Methods & variables all have clear and accurate names
+      __YES___ Methods & variables all have clear and accurate names
 
-      _____ Methods avoid confusing side effects
+      __PART___ Methods avoid confusing side effects
 
-_____ 1 pt: All required files included with submission (including completed checklist file)
+__YES___ 1 pt: All required files included with submission (including completed checklist file)
 
-_____ 1 pt: readme.md contains your reflection on the assignment
+__YES___ 1 pt: readme.md contains your reflection on the assignment
